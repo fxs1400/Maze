@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Maze</title>
+<style>
+.image-container {
+  position: relative; /* ضروري لوضع الصورة داخلها */
+  width: 800px; /* عرض للحاوية */
+  height: 400px; /* ارتفاع للحاوية */
+  border: 1px solid black; /* حدود لتوضيح المنطقة */
+  background: url("https://fxs1400.github.io/Maze/maze.png");
+}
+
+.movable-image {
+  position: absolute; /* يسمح بتحديد موقع الصورة بدقة */
+  width: 30px; /* حجم الصورة */
+  height: 30px;
+  top: 50%; /* البداية في المنتصف */
+  left: 50%; /* البداية في المنتصف */
+  transform: translate(-50%, -50%); /* لتوسيط الصورة تمامًا */
+}
+
+.controls {
+  margin-top: 10px; /* مسافة فوق أزرار التحكم */
+}
+
+.controls button {
+  margin: 0 5px; /* مسافة بين الأزرار */
+  padding: 5px 10px;
+  cursor: pointer;
+}
+</style>
+</head>
+<body>
+
+<div class="image-container">
+  <img src="https://fxs1400.github.io/Maze/Player.png" alt="player" height="30" width="30" class="movable-image" id="myImage">
+</div>
+
+<div class="controls">
+      <button onclick="moveImage('up')">↑</button>
+  <br>
+  <button onclick="moveImage('left')">←</button>
+  <button onclick="moveImage('right')">→</button>
+  <br>  <button onclick="moveImage('down')">↓</button>
+</div>
+
+<script>
+const myImage = document.getElementById('myImage');
+let currentPosition = { x: 0, y: 0 }; // لتتبع موقع الصورة
+const moveAmount = 20; // مقدار الحركة في كل ضغطة
+
+function moveImage(direction) {
+  switch (direction) {
+    case 'up':
+      currentPosition.y -= moveAmount;
+      break;
+    case 'down':
+      currentPosition.y += moveAmount;
+      break;
+    case 'left':
+      currentPosition.x -= moveAmount;
+      break;
+    case 'right':
+      currentPosition.x += moveAmount;
+      break;
+  }
+  myImage.style.transform = `translate(${currentPosition.x}px, ${currentPosition.y}px)`;
+}
+</script>
+
+</body>
+  </html>
